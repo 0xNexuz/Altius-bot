@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Altius: From Chaos to Speed</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff6b47, #f7931e, #ff4757);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .hero-section {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            background: radial-gradient(circle at center, rgba(0,0,0,0.3), rgba(0,0,0,0.7));
+        }
+
+        .altius-logo {
+            width: 120px;
+            height: 120px;
+            background: #ff6b47;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .logo-shape {
+            width: 60px;
+            height: 60px;
+            position: relative;
+        }
+
+        .logo-arc {
+            position: absolute;
+            border: 6px solid #2c2c2c;
+            border-radius: 50px;
+            border-bottom: transparent;
+            transform-origin: center bottom;
+        }
+
+        .logo-arc:nth-child(1) {
+            width: 60px;
+            height: 30px;
+            top: 0;
+            left: 0;
+        }
+
+        .logo-arc:nth-child(2) {
+            width: 40px;
+            height: 20px;
+            top: 15px;
+            left: 10px;
+        }
+
+        .logo-arc:nth-child(3) {
+            width: 20px;
+            height: 10px;
+            top: 25px;
+            left: 20px;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            animation: slideInUp 1s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: #ffedd5;
+            margin-bottom: 40px;
+            animation: slideInUp 1s ease-out 0.3s both;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        .comic-container {
+            padding: 100px 20px;
+            background: linear-gradient(180deg, #1a1a2e, #16213e, #0f3460);
+        }
+
+        .comic-panel {
+            max-width: 1200px;
+            margin: 150px auto;
+            background: white;
+            border-radius: 30px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+            transform: scale(0.8);
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .comic-panel.visible {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .panel-header {
+            background: linear-gradient(135deg, #ff6b47, #f7931e);
+            padding: 30px;
+            text-align: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .panel-content {
+            padding: 50px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            min-height: 400px;
+        }
+
+        .panel-visual {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            color: white;
+            font-size: 1.2rem;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .panel-text {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .speech-bubble {
+            background: #ffeb3b;
+            border-radius: 25px;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+            font-style: italic;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .speech-bubble::before {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 30px;
+            width: 0;
+            height: 0;
+            border: 15px solid transparent;
+            border-top-color: #ffeb3b;
+        }
+
+        .developer-emoji {
+            font-size: 4rem;
+            animation: bounce 2s infinite;
+        }
+
+        .frustrated {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+        }
+
+        .excited {
+            background: linear-gradient(135deg, #4ecdc4, #44a08d);
+        }
+
+        .transformation {
+            background: linear-gradient(135deg, #a8edea, #fed6e3);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .before-after {
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .before {
+            background: rgba(255, 107, 107, 0.3);
+        }
+
+        .after {
+            background: rgba(78, 205, 196, 0.3);
+        }
+
+        .success {
+            background: linear-gradient(135deg, #56ab2f, #a8e6cf);
+        }
+
+        .vm-icons {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+
+        .vm-icon {
+            background: rgba(255,255,255,0.2);
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+
+        .vm-icon:nth-child(2) { animation-delay: 0.5s; }
+        .vm-icon:nth-child(3) { animation-delay: 1s; }
+        .vm-icon:nth-child(4) { animation-delay: 1.5s; }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .speed-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.1) 10px,
+                rgba(255,255,255,0.1) 20px
+            );
+            animation: speedMove 2s linear infinite;
+        }
+
+        @keyframes speedMove {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            padding: 100px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .cta-title {
+            font-size: 3rem;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .cta-text {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .hashtag {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #ff6b47, #f7931e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.5rem; }
+            .hero-subtitle { font-size: 1.2rem; }
+            .panel-content { 
+                grid-template-columns: 1fr; 
+                gap: 30px;
+                padding: 30px;
+            }
+            .transformation { grid-template-columns: 1fr; }
+            .vm-icons { flex-direction: column; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="altius-logo">
+            <div class="logo-shape">
+                <div class="logo-arc"></div>
+                <div class="logo-arc"></div>
+                <div class="logo-arc"></div>
+            </div>
+        </div>
+        <h1 class="hero-title">From Chaos to Speed</h1>
+        <p class="hero-subtitle">The Altius Blockchain Execution Revolution</p>
+        <div class="scroll-indicator">↓ Scroll to begin the journey ↓</div>
+    </section>
+
+    <!-- Comic Panels -->
+    <div class="comic-container">
+        <!-- Panel 1: The Struggle -->
+        <div class="comic-panel" data-panel="1">
+            <div class="panel-header">Panel 1: The Struggle is Real</div>
+            <div class="panel-content">
+                <div class="panel-visual frustrated">
+                    <div class="developer-emoji">😩</div>
+                    <p>Multiple browser tabs open</p>
+                    <p>❌ Transaction Failed</p>
+                    <p>❌ Network Congested</p>
+                    <p>❌ High Gas Fees</p>
+                </div>
+                <div class="panel-text">
+                    <h3>Every Web3 Developer's Nightmare...</h3>
+                    <p>Sequential execution creating bottlenecks, failed transactions, and frustrated users. The single-threaded approach just can't handle modern blockchain demands.</p>
+                    <div class="speech-bubble">
+                        "Another failed transaction! This sequential execution is killing me!"
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panel 2: Discovery -->
+        <div class="comic-panel" data-panel="2">
+            <div class="panel-header">Panel 2: The Discovery Moment</div>
+            <div class="panel-content">
+                <div class="panel-visual excited">
+                    <div class="developer-emoji">🤩</div>
+                    <p>💡 Altius Labs</p>
+                    <p>⚡ Gigagas Throughput</p>
+                    <div class="vm-icons">
+                        <div class="vm-icon">EVM</div>
+                        <div class="vm-icon">MoveVM</div>
+                        <div class="vm-icon">CosmWasm</div>
+                        <div class="vm-icon">zkVM</div>
+                    </div>
+                </div>
+                <div class="panel-text">
+                    <h3>Then, a Game-Changing Discovery...</h3>
+                    <p>A revolutionary execution engine that supports multiple VMs with parallel processing. Finally, a solution that can handle the complexity of modern Web3!</p>
+                    <div class="speech-bubble">
+                        "Wait... parallel execution across multiple VMs? This changes everything!"
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panel 3: Transformation -->
+        <div class="comic-panel" data-panel="3">
+            <div class="panel-header">Panel 3: The Transformation</div>
+            <div class="panel-content">
+                <div class="panel-visual transformation">
+                    <div class="before-after before">
+                        <h4>Before</h4>
+                        <p>🐌 Single Lane</p>
+                        <p>⏰ Sequential</p>
+                        <p>🚫 Bottlenecks</p>
+                    </div>
+                    <div class="before-after after">
+                        <h4>After</h4>
+                        <p>🚀 Multi-Lane</p>
+                        <p>⚡ Parallel</p>
+                        <p>✅ Optimized</p>
+                        <div class="speed-lines"></div>
+                    </div>
+                </div>
+                <div class="panel-text">
+                    <h3>The Power of Parallel Execution Unleashed!</h3>
+                    <p>Watch as Altius transforms blockchain execution from a traffic jam into a high-speed superhighway. Multiple VMs working in harmony.</p>
+                    <div class="speech-bubble">
+                        "This is what the future of blockchain looks like!"
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panel 4: Victory -->
+        <div class="comic-panel" data-panel="4">
+            <div class="panel-header">Panel 4: Victory & Success</div>
+            <div class="panel-content">
+                <div class="panel-visual success">
+                    <div class="developer-emoji">🎉</div>
+                    <p>✅ Transactions Complete</p>
+                    <p>📈 Performance Optimized</p>
+                    <p>🏆 Racing Precision</p>
+                    <p>⚡ Gigagas Throughput</p>
+                    <div class="speed-lines"></div>
+                </div>
+                <div class="panel-text">
+                    <h3>Racing Precision Meets Modular Power!</h3>
+                    <p>From bottleneck to breakthrough! Altius delivers on its promise of speed, execution, and modular power that developers can rely on.</p>
+                    <div class="speech-bubble">
+                        "From bottleneck to breakthrough! This is the future!"
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Call to Action -->
+    <section class="cta-section">
+        <h2 class="cta-title">Ready to Join the Revolution?</h2>
+        <p class="cta-text">Experience the power of parallel execution with Altius Labs</p>
+        <div class="hashtag">#AltiusDropzone</div>
+    </section>
+
+    <script>
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all comic panels
+        document.querySelectorAll('.comic-panel').forEach(panel => {
+            observer.observe(panel);
+        });
+
+        // Smooth scrolling for better experience
+        document.addEventListener('DOMContentLoaded', () => {
+            const scrollIndicator = document.querySelector('.scroll-indicator');
+            scrollIndicator.addEventListener('click', () => {
+                document.querySelector('.comic-container').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add some dynamic effects
+        setInterval(() => {
+            const vmIcons = document.querySelectorAll('.vm-icon');
+            vmIcons.forEach((icon, index) => {
+                setTimeout(() => {
+                    icon.style.transform = 'scale(1.2)';
+                    setTimeout(() => {
+                        icon.style.transform = 'scale(1)';
+                    }, 200);
+                }, index * 100);
+            });
+        }, 3000);
+    </script>
+</body>
+  </html>
